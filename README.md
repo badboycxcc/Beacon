@@ -11,9 +11,13 @@
 
 ## 配置
 ### 1  
-<img width="963" alt="截屏2024-08-24 下午10 30 29" src="https://github.com/user-attachments/assets/bc1a12fb-8567-4442-8fc2-390241d56582">  
+<img width="963" alt="截屏2024-08-24 下午10 30 29" src="https://github.com/user-attachments/assets/bc1a12fb-8567-4442-8fc2-390241d56582">   
+
+
 ### 2  
 <img width="976" alt="截屏2024-08-24 下午10 30 52" src="https://github.com/user-attachments/assets/41c97d82-a8e4-4090-b908-a80894baf44c">  
+
+
 ### 3  
 <img width="971" alt="截屏2024-08-24 下午10 31 32" src="https://github.com/user-attachments/assets/f864b1d1-7535-4e04-a906-81c7ea615c20">  
 
