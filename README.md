@@ -1,3 +1,18 @@
+# 安装编译
+## 安装
+- vcpkg
+- curl_x64-windows
+- dirent_x64-windows
+- openssl_x64-windows
+- pthreads_x64-windows
+- zlib_x64-windows
+
+## 配置
+
+
+
+
+
 # Beacon
 
 郑重声明：文中所涉及的技术、思路和工具仅供以安全为目的的学习交流使用，任何人不得将其用于非法用途以及盈利等目的，否则后果自行承担。
