@@ -21,16 +21,16 @@
 ### 3  
 <img width="971" alt="截屏2024-08-24 下午10 31 32" src="https://github.com/user-attachments/assets/f864b1d1-7535-4e04-a906-81c7ea615c20">  
 ```
-dbghelp.lib
-zlib.lib
-Crypt32.lib
-libcurl.lib
-E:\Code\vcpkg\packages\openssl_x64-windows-static\lib\libcrypto.lib
-E:\Code\vcpkg\packages\openssl_x64-windows-static\lib\libssl.lib
-advapi32.lib
-normaliz.lib
-ws2_32.lib
-wldap32.lib
+dbghelp.lib  
+zlib.lib  
+Crypt32.lib  
+libcurl.lib  
+E:\Code\vcpkg\packages\openssl_x64-windows-static\lib\libcrypto.lib  
+E:\Code\vcpkg\packages\openssl_x64-windows-static\lib\libssl.lib  
+advapi32.lib  
+normaliz.lib  
+ws2_32.lib  
+wldap32.lib  
 ```
 
 
